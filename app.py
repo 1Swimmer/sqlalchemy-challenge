@@ -69,7 +69,7 @@ def stations():
 
     """Return a list of Stations"""
     # Query all Stations
-    results1 = session.query(stations.station, stations.name, stations.latitude, stations.longitude, stations.longitude, stations.elevation ).all()
+    results1 = session.query(Station.station, Station.name, Station.latitude, Station.longitude, Station.elevation ).all()
 
     session.close()
 
@@ -99,4 +99,7 @@ def tobsAnalysis():
 
 #Return a JSON list of temperature observations (TOBS) for the previous year.
     return jsonify(tobs_active)
-
+# call the app
+if __name__=='__main__':
+    app.run(debug=True)
+    
