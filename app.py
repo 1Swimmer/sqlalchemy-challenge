@@ -17,8 +17,8 @@ Base = automap_base()
 
 Base.prepare(engine, reflect=True)
 
-precipitation = Base.classes.precipitation
-stations = Base.classes.stations
+precipitation = Base.classes.measurement
+Station= Base.classes.station
 
 app = Flask(__name__)
 
@@ -45,7 +45,7 @@ def precipitation():
 
     """Return a list of precipitation"""
     # Query all Measures
-    results = session.query(precipitation.date, precipitation.prcp).all()
+    results = session.query(measurement.date, measurement.prcp).all()
 
     session.close()
 
