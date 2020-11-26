@@ -1,7 +1,7 @@
 #Import dependencies
 
 import numpy as np
-import homePage
+import sqlalchemy
 from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
 from sqlalchemy import create_engine, func
@@ -17,7 +17,7 @@ Base = automap_base()
 
 Base.prepare(engine, reflect=True)
 
-prcpAnalysis = Base.classes.measurement
+precipitation = Base.classes.measurement
 Station= Base.classes.station
 
 app = Flask(__name__)
@@ -25,7 +25,7 @@ app = Flask(__name__)
 
 #List all routes that are available
 @app.route("/")
-def sqlalchemy():
+def homePage():
     """List all available api routes."""
     return (
         f"Available Routes:<br/>"
@@ -83,7 +83,7 @@ def stations():
 #Tobs route
 @app.route("/api/v1.0/tobs")
 
-def precipitation():
+def tobsAnalysis():
     # Create our session (link) from Python to the DB
     session = Session(engine)
 
